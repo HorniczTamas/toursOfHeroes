@@ -1,0 +1,17 @@
+<h2>My Heroes</h2>
+<ul class="heroes">
+  @for (hero of heroList; track $index) {
+  <li>
+    <!-- {{$index}} -->
+    <button type="button" (click)="onSelect(hero)" [class.selected]="hero == selectedHero">
+      <span class="badge">{{hero.id}}</span>
+      <span class="name">{{hero.name}}</span>
+    </button>
+  </li>
+  @if(selectedHero == hero){
+    <app-hero-detail [hero]="selectedHero"></app-hero-detail>
+  }
+  }
+</ul>
+
+

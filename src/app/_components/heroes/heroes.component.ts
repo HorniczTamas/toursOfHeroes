@@ -7,16 +7,17 @@ import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HeroService } from '../../_services/hero.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MessageService } from '../../_services/message.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
-  imports: [UpperCasePipe, FormsModule, HeroDetailComponent, HttpClientModule],
+  imports: [UpperCasePipe, FormsModule, HeroDetailComponent, HttpClientModule, RouterModule],
   templateUrl: './heroes.component.html',
   styleUrl: './heroes.component.css',
 })
 export class HeroesComponent implements OnInit{
   heroService = inject(HeroService)
-  messageService = inject(MessageService)
+  // messageService = inject(MessageService)
   selectedHero?: Hero;
   heroList: Hero[] = [];
 
@@ -27,7 +28,7 @@ export class HeroesComponent implements OnInit{
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+    // this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 
   getHeroes(): void{

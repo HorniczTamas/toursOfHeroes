@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 export class HeroesComponent implements OnInit{
   heroService = inject(HeroService)
   heroList: Hero[] = [];
+  heroes: any;
 
   // Ez egy interface
   ngOnInit(): void {
@@ -24,5 +25,17 @@ export class HeroesComponent implements OnInit{
       next: res => this.heroList = res,
       error: res => console.log(res.error),
     })
+
+
+    
   }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.heroService.addHero({name} as Hero).subscribe({
+      next: (hero: any) => this.heroes.push(hero)
+    })
+  } 
 }

@@ -12,12 +12,16 @@ import { Location } from '@angular/common';
   templateUrl: './hero-detail.component.html',
   styleUrl: './hero-detail.component.css'
 })
-export class HeroDetailComponent{
+export class HeroDetailComponent implements OnInit{
   hero? : Hero
 
   route = inject(ActivatedRoute)
   heroSErvice = inject(HeroService)
   location = inject(Location)
+
+  ngOnInit(): void {
+    this.getHero()
+  }
 
   getHero(){
     const id = Number(this.route.snapshot.paramMap.get(`id`))

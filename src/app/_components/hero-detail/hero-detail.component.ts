@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../../_services/hero.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-hero-detail',
@@ -12,14 +13,42 @@ import { HeroService } from '../../_services/hero.service';
   styleUrl: './hero-detail.component.css'
 })
 export class HeroDetailComponent implements OnInit{
-  hero = input<Hero>()
+  hero? : Hero
+
   route = inject(ActivatedRoute)
   heroSErvice = inject(HeroService)
+
 
   selectedHero? : Hero
 
   constructor(){}
 
+  location = inject(Location)
+
   ngOnInit(): void {
+    this.getHero()
   }
+
+  getHero(){
+    const id = Number(this.route.snapshot.paramMap.get(`id`))
+    this.heroSErvice.getHero(id).subscribe({
+      next: response => this.hero = response
+
+      }
+    )
+  }
+
+  goBack() : void{
+    this.location.back();
+  }
+
+  save(): void {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero).subscribe({
+        next: 
+      })
+    }
+  }
+}
+
 }

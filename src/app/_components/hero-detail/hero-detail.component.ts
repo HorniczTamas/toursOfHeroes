@@ -15,7 +15,7 @@ export class HeroDetailComponent implements OnInit{
   hero = input<Hero>()
   route = inject(ActivatedRoute)
   heroSErvice = inject(HeroService)
-  // @Input() hero? : Hero
+
   selectedHero? : Hero
 
   constructor(){}

@@ -2,14 +2,10 @@
 <ul class="heroes">
   @for (hero of heroList; track $index) {
   <li>
-    <!-- {{$index}} -->
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
   </li>
-  <!-- @if(selectedHero == hero){
-    <app-hero-detail [hero]="selectedHero"></app-hero-detail>
-  } -->
   }
 </ul>
 
